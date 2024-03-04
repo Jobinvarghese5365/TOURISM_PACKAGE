@@ -17,8 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 import Tour.urls
+import frontend.urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('Tour/', include(Tour.urls))
+    path('Tour/', include(Tour.urls)),
+    path('frontend/', include(frontend.urls)),
 ]

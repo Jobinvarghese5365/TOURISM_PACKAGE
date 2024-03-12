@@ -10,3 +10,6 @@ def Singlepage(request,id):
     x = Spot.objects.filter(Destination__id=id)
 
     return render(request,"single_page.html",{'data':data,'x':x})
+
+def Destination(request):
+    return render(request,"destination_single.html")

@@ -18,12 +18,10 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.staticfiles.urls import static,staticfiles_urlpatterns
 from Tour_Packages import settings
-import Tour.urls
 import frontend.urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('Tour/', include(Tour.urls)),
     path('frontend/', include(frontend.urls)),
 ]
 urlpatterns += staticfiles_urlpatterns()

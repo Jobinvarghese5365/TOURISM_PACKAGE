@@ -1,6 +1,5 @@
 from django.contrib import admin
-from Tour.models import *
+from frontend.models import state
 
 # Register your models here.
-admin.site.register(PackagesDb)
-admin.site.register(Spot)
+admin.site.register(state)

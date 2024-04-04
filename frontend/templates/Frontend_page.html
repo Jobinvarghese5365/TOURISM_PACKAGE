@@ -39,10 +39,15 @@
 	          <li class="nav-item"><a href="#services-section" class="nav-link"><span>Services</span></a></li>
 	          <li class="nav-item"><a href="#about-section" class="nav-link"><span>About</span></a></li>
 	          <li class="nav-item"><a href="#destination-section" class="nav-link"><span>Destination</span></a></li>
-	          <li class="nav-item"><a href="#hotel-section" class="nav-link"><span>Hotel</span></a></li>
-	          <li class="nav-item"><a href="#restaurant-section" class="nav-link"><span>Restaurant</span></a></li>
 	          <li class="nav-item"><a href="#blog-section" class="nav-link"><span>Blog</span></a></li>
-	          <li class="nav-item"><a href="#contact-section" class="nav-link"><span>Contact</span></a></li>
+	          <li class="nav-item"><a href="#contact-section" class="nav-link"><span>Feedback</span></a></li>
+			  <li  class="nav-item">
+				{% if user.is_authenticated %}
+				<a href="{% url 'logout' %}" class="nav-link" style="color:black"> >Welcome  -  {{user}}/logout</a>
+				{% else %}
+				<a href="{% url 'login' %}" class="nav-link" style="color:black"> >login</a>
+				{% endif%}
+		      </li>
 	        </ul>
 	      </div>
 	    </div>
@@ -280,37 +285,30 @@
             <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
           </div>
         </div>
-    		<div class="row">
-				
-    			<div class="col-md-6 col-lg-4 ftco-animate">
-    				<div class="project">
-    					<div class="img">
-    						<div class="vr"><span>Sale</span></div>
-		    				<a href="{% url 'Singlepage' %}"><img src="" class="img-fluid" alt="Colorlib Template"></a>
-	    				</div>
-	    				<div class="text">
-<!--	    					<h4 class="price"><span class="old-price mr-2">Rs 15000</span>{{i.Price}}</h4>-->
-<!--	    					<span>5 Days Tour</span>-->
-	    					<h3><a href="destination.html"></a></h3>
-	    					<div class="star d-flex clearfix">
-	    						<div class="mr-auto float-left">
-		    						<span class="ion-ios-star"></span>
-		    						<span class="ion-ios-star"></span>
-		    						<span class="ion-ios-star"></span>
-		    						<span class="ion-ios-star"></span>
-		    						<span class="ion-ios-star"></span>
-	    						</div>
-	    						<div class="float-right">
-	    							<span class="rate"><a href="#"></a></span>
-	    						</div>
-	    					</div>
-	    				</div>
-	    				<a href="{% static 'images/destination-1.jpg' %}" class="icon image-popup d-flex justify-content-center align-items-center">
-	    					<span class="icon-expand"></span>
-	    				</a>
-    				</div>
-    			</div>
-				
+		
+    <div class="row">
+		{% for i in x %}
+        <div class="col-md-6 col-lg-4 ftco-animate">
+			<div class="project">
+				<div class="img">
+					
+					<a href="{% url 'Singlepage' i.id %}"><img src="{{i.Image.url}}" class="img-fluid" alt="Colorlib Template"></a>
+				</div>
+				<div class="text">
+					
+					<h3><a href="destination.html">{{i.Name}}</a></h3>
+					<div class="star d-flex clearfix">
+					</div>
+				</div>
+				<a href="{{i.Image.url}}" class="icon image-popup d-flex justify-content-center align-items-center">
+					<span class="icon-expand"></span>
+				</a>
+			</div>
+		</div>
+		{% endfor %}
+    </div>
+
+	
 <!--    			<div class="col-md-6 col-lg-4 ftco-animate">-->
 <!--    				<div class="project">-->
 <!--    					<div class="img">-->
@@ -447,10 +445,11 @@
 <!--    				</div>-->
 <!--    			</div>-->
     		</div>
+			
     	</div>
     </section>
 
-		<section class="ftco-intro img" id="hotel-section" style="background-image: url({% static 'images/bg_4.jpg' %});">
+		<!-- <section class="ftco-intro img" id="hotel-section" style="background-image: url({% static 'images/bg_4.jpg' %});">
 			<div class="overlay"></div>
 			<div class="container">
 				<div class="row justify-content-center">
@@ -461,18 +460,18 @@
 					</div>
 				</div>
 			</div>
-		</section>
+		</section> -->
 
 		<section class="ftco-section">
-    	<div class="container">
+    	<!-- <div class="container">
     		<div class="row justify-content-center pb-5">
           <div class="col-md-12 heading-section text-center ftco-animate">
-          	<span class="subheading">Suggested Hotel</span>
+          	<span class="subheading"> Hotel</span>
             <h2 class="mb-4">Find Nearest Hotel</h2>
             <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
           </div>
-        </div>
-    		<div class="row">
+        </div> -->
+    		<!-- <div class="row">
     			<div class="col-md-6 col-lg-4 ftco-animate">
     				<div class="project">
     					<div class="img">
@@ -555,7 +554,7 @@
 	    				</a>
     				</div>
     			</div>
-    		</div>
+    		</div> -->
     		<div class="row justify-content-center pb-5 pt-5">
           <div class="col-md-12 heading-section text-center ftco-animate">
           	<span class="subheading">Rooms  Suites</span>
@@ -708,7 +707,7 @@
       </div>
     </section>
 
-    <section class="ftco-section" id="restaurant-section">
+    <!-- <section class="ftco-section" id="restaurant-section">
     	<div class="container">
     		<div class="row justify-content-center pb-5">
           <div class="col-md-12 heading-section text-center ftco-animate">
@@ -801,7 +800,7 @@
     			</div>
     		</div>
     	</div>
-    </section>
+    </section> -->
 
 
     <section class="ftco-section bg-light" id="blog-section">
@@ -900,29 +899,30 @@
       <div class="container">
       	<div class="row justify-content-center mb-5 pb-3">
           <div class="col-md-7 heading-section text-center ftco-animate">
-            <span class="subheading">Contact</span>
-            <h2 class="mb-4">Contact Me</h2>
+            <span class="subheading">Feedback</span>
+            <h2 class="mb-4">Feedback</h2>
             <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
           </div>
         </div>
 
         <div class="row block-9">
           <div class="col-md-7 order-md-last d-flex">
-            <form action="#" class="bg-light p-4 p-md-5 contact-form">
+            <form action="{% url 'feedback' %}" method="POST" class="bg-light p-4 p-md-5 contact-form" enctype="multipart/form-data">
+				{% csrf_token %}
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Your Name">
+                <input type="text" class="form-control" placeholder="Your Name" name="Name">
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Your Email">
+                <input type="text" class="form-control" placeholder="Your Email" name="email">
               </div>
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <input type="text" class="form-control" placeholder="Subject">
+              </div> -->
+              <div class="form-group">
+                <textarea name="feedback"  cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
               </div>
               <div class="form-group">
-                <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
-              </div>
-              <div class="form-group">
-                <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
+                <button type="submit" value="Send Message" class="btn btn-primary py-3 px-5">submit</button>
               </div>
             </form>
 
